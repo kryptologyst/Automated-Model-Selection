@@ -1,0 +1,52 @@
+"""Default configuration for automated model selection."""
+
+dataset: iris
+test_size: 0.2
+random_state: 42
+normalize: true
+
+# Model configurations
+models:
+  baselines:
+    logistic_regression:
+      max_iter: 1000
+      C: 1.0
+    random_forest:
+      n_estimators: 100
+      max_depth: null
+    svm:
+      C: 1.0
+      kernel: rbf
+      probability: true
+
+# AutoML configurations
+automl:
+  run_tpot: true
+  run_optuna: true
+  
+  tpot:
+    generations: 5
+    population_size: 20
+    verbosity: 2
+    
+  optuna:
+    n_trials: 100
+    timeout: null
+
+# Evaluation metrics
+metrics:
+  - accuracy
+  - precision_macro
+  - recall_macro
+  - f1_macro
+  - precision_weighted
+  - recall_weighted
+  - f1_weighted
+  - roc_auc
+
+# Output settings
+output:
+  save_models: true
+  save_predictions: true
+  save_plots: true
+  format: json
